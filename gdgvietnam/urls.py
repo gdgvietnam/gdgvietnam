@@ -18,6 +18,7 @@ urlpatterns = patterns("",
     # admin interface, which would be marginally more secure.
     ("^admin/", include(admin.site.urls)),
 
+
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
 
@@ -67,6 +68,7 @@ urlpatterns = patterns("",
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
     ("^", include("mezzanine.urls")),
+    ("^", include("mezzanine_events.urls")),
 
     # MOUNTING MEZZANINE UNDER A PREFIX
     # ---------------------------------
