@@ -21,8 +21,10 @@
 {#<link rel="stylesheet" href="{% static "css/bootstrap.css" %}">#}
 {#<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">#}
 {#<link rel="stylesheet" href="{% static "css/bootstrap-responsive.css" %}">  #}
+<link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}"/>
 <link rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
 <link rel="stylesheet" href="{% static "css/gdgvietnam.css" %}"/>
+<link rel="stylesheet" href="{% static "css/animatecss/animate.min.css" %}"/>
 
 {% if LANGUAGE_BIDI %}
 <link rel="stylesheet" href="{% static "css/rtl.css" %}">
@@ -37,9 +39,9 @@
 {% endcompress %}
 
 {% compress js %}
-{#<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>#}
-{#<script src="{% static "js/bootstrap.js" %}"></script>#}
-{#<script src="{% static "js/bootstrap-extras.js" %}"></script>#}
+<script src="{% static "mezzanine/js/"|add:settings.JQUERY_FILENAME %}"></script>
+<script src="{% static "js/bootstrap.js" %}"></script>
+<script src="{% static "js/bootstrap-extras.js" %}"></script>
 {% block extra_js %}{% endblock %}
 {% endcompress %}
 <!--[if lt IE 9]>
@@ -68,9 +70,6 @@
     </div>
 </div>
 </div>
-<br/>
-<br/>
-
 
 <div class="container">
 
@@ -87,30 +86,12 @@
 
 </div>
 
-<div class="container">
-<div class="row">
 
 
 
-<div class="span7 middle">
     {% block main %}{% endblock %}
-</div>
 
-<div class="span3 right">
-    {% nevercache %}
-    {% include "includes/user_panel.html" %}
-    {% endnevercache %}
-    <div class="panel">
-    {% block right_panel %}
-    {% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}
-    {% endblock %}
-    </div>
-</div>
 
-</div>
-</div>
 
 <footer>
 <div class="container">

@@ -1,7 +1,24 @@
 {% load mezzanine_tags %}
 
 {% editable_loader %}
+<script>
 
+    $(document).ready(function () {
+
+        $(".thumbnail")
+                .mouseenter(function () {
+                    $(this).find('.caption').removeClass("flipOutX").addClass("flipInX").show();
+                })
+                .mouseleave(function () {
+                    $(this).find('.caption').removeClass("flipInX").addClass("flipOutX");
+                })
+        $("legend").each(function () {
+            _this = $(this);
+            if (_this.text().length >= 30)_this.text(_this.text().substr(0,30) + "...");
+        });
+    });
+
+</script>
 <script>
 {% if settings.GOOGLE_ANALYTICS_ID and not request.user.is_staff %}
 var _gaq = _gaq || [['_trackPageview']];

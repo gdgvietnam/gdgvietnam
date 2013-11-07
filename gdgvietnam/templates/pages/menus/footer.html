@@ -6,11 +6,12 @@
     <div class="col-lg-12">
     <div class="col-lg-4 text-center">
 
-        <a class="mainnav custom-title-font" href="{% url "home" %}">{% trans "Home" %}</a>
+        <a class="mainnav custom-title-font {% if on_home %}top_nav_active{% endif %}" href="{% url "home" %}">{% trans "Home" %}</a>
             {% for page in page_branch %}
 
                     {% if page.in_menu %}
-                            <a class="mainnav custom-title-font" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+
+                            <a class="mainnav custom-title-font {% if page.is_current_or_ascendant %}top_nav_active{% endif %} " href="{{ page.get_absolute_url }}">{{ page.title }}</a>
                     {% endif %}
 
             {#    {% if page.is_primary %}#}

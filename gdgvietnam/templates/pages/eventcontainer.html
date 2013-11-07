@@ -1,0 +1,76 @@
+{% extends "pages/page.html" %}
+{% load i18n %}
+{% load mezzanine_tags event %}
+
+{% block main %}{{ block.super }}
+
+
+
+    {% if page.eventcontainer.has_future_due %}
+        <div class="container"><div class="row"><div><h2 class="RedHeader">Upcoming Events</h2></div></div></div>
+        <div id="myCarousel" class="carousel slide homeslide">
+            <!-- Indicators -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                {% for event in page.eventcontainer.future_events %}
+                    <div class="item {% if forloop.last %}active{% endif %}">
+                        <a href="{{event.event.get_absolute_url}}">
+                            <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ event.event.banner_photo }}");'></div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <img src="/static/img/left.png" class="icon-prev"/>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <img src="/static/img/right.png"  class="icon-next"/>
+            </a>
+        </div>
+    {% else %}
+        <div class="container"><div class="row"><div><h2 class="RedHeader">No Upcoming Events</h2></div></div></div>
+    {% endif %}
+
+    {% if page.eventcontainer.has_past_due %}
+        <div class="container"><div class="row"><h2 class="RedHeader">Past Events</h2></div>
+            {% for event in page.eventcontainer.events %}
+            {% if event.event.is_past_due %}
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <div class="caption animated flipOutX">
+                        <h4>{{ event.event.title }}</h4>
+
+                        <p>{{ event.event.description }}</p>
+
+                        <p><a href="{{event.event.get_absolute_url}}" class="label label-default" rel="tooltip" title="">Details</a></p>
+                    </div>
+                    <legend>{{ event.event.title }}</legend>
+                    <img src="{{ MEDIA_URL }}{{ event.event.small_banner_photo }}" alt="..." style="max-height: 231px;max-width: 346px;">
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    {% else %}
+        <div class="container"><div class="row"><h2 class="RedHeader">No Past Events</h2></div>
+    {% endif %}
+
+
+
+
+
+
+        <hr>
+
+
+{#    {% for event in page.eventcontainer.events %}#}
+{#        <h3><a href="{{event.get_absolute_url}}">{{event.title}}</a> <small>{{event.event.date}} from {{event.event.start_time}} to {{event.event.end_time}}</small></h3>#}
+{#        {{event.event.content|richtext_filter|truncatewords_html:40|safe}}#}
+{#        <a href="{{event.get_absolute_url}}" class="btn">More info &rarr;</a>#}
+{#    {% endfor %}#}
+
+{% endblock %}

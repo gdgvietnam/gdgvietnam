@@ -132,8 +132,14 @@ footer {
 .OrangeHeader
 {
   color:#F4C236;
-    font-size: 50pt;
+  font-size: 40pt;
   font-family: LatoHai, serif;
+}
+.RedHeader
+{
+    color:#CC372C;
+    font-size: 30pt;
+    font-family: LatoHai, serif;
 }
 .custom-title-font{
   font-family: LatoLig, serif;
@@ -164,7 +170,7 @@ footer {
 }
 
 footer .mainnav{
-    color:white !important;
+    color:white;
     font-size:25px;
     padding: 10px;
 }
@@ -195,7 +201,12 @@ color:#F4C236 !important;
 .readmore:hover{
     cursor: hand;
 }
+.container .quote{
+    font-size: 18px;
+    text-align: center;
+    color:#999999;
 
+}
 
 .mycaption
 
@@ -211,10 +222,15 @@ margin-bottom: -20px !important;
 opacity: 0.5;
 padding-left: 30px;
 }
+.top_nav_active{
+    color:#F4C236 !important;
+}
 
 .homeslide
 {
-height:70% !important;
+    height:40% !important;
+    width:960px;
+    margin: 0 auto;
 }
 /* Responsive Styles */
 @media (max-width: 767px) {
@@ -224,3 +240,37 @@ height:70% !important;
 }
 
 }
+
+
+
+
+.thumbnail {
+    position: relative;
+    overflow: hidden;
+}
+
+.caption {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(66, 139, 202, 0.75);
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    display: none;
+    text-align: center;
+    color: #fff !important;
+    z-index: 2;
+}
+
+legend {
+    position: absolute;
+    background: red;
+    bottom: 0;
+    color: whitesmoke;
+    margin: 3px;
+    text-align: center;
+    width: 100%;
+    opacity: 0.5;
+}
+

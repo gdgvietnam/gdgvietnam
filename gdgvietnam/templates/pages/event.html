@@ -1,0 +1,51 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags event %}
+{% block title %}
+
+{% endblock %}
+{% block main %}{{ block.super }}
+    <div id="myCarousel" class="carousel slide homeslide">
+        <div class="carousel-inner">
+                <div class="item active">
+                        <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ page.event.event.banner_photo }}");'></div>
+                </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h2 class="RedHeader">About Events</h2>
+                <p>{{page.event.content|richtext_filter|safe}}</p>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4">
+                <h2 class="RedHeader">Guests speakers</h2>
+                {% for speaker in page.event.speakers_list %}
+                    <p>{{speaker}}</p>
+                {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <h2 class="RedHeader">Location</h2>
+                    <address>
+                        {{page.event.location|linebreaksbr}}<br />
+                    </address>
+                    <p>
+                        {{page.event.date}} from {{page.event.start_time}} to {{page.event.end_time}}
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h2 class="RedHeader">Map</h2>
+                    {% google_static_map page.event 302 160 10 %}
+                    <a href='{{page.event|google_nav_url}}' class="btn btn-small">
+                        Click to see full map
+                    </a>
+                </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
