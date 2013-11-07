@@ -4,5 +4,6 @@
 .DS_Store
 .coverage
 local_settings.py
+*.py~
 settings.py
-
+.idea/
