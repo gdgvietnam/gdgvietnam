@@ -6,5 +6,31 @@
 {% endblock %}
 {% block main %}{{ block.super }}
 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <img class="img-circle" data-src="holder.js/300x300" alt="300x300" style="width: 300px; height: 300px;" src="{{STATIC_URL}}img/george.jpg">
 
+                <div>
+                    <h3 style="color:black">George Nguyen</h3>
+                    <h5 style="color:black">Founder - Google Developer Groups Vietnam</h5>
+                        <p>George Nguyen is a Lecturer in Centre of Technology under IT department at RMIT University
+                            Vietnam. He also the Founder of Google Developer Groups Vietnam (GDG Vietnam) and the
+                            President of RMIT VN Alumni. He has more than 8 years management experience in the industry
+                            and more than 6 years' teaching experience in higher education local and international. He
+                            is currently an active researcher of Health Research Group in B.IT Department.</p>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+                <img class="img-circle" data-src="holder.js/300x300" alt="300x300" style="width: 300px; height: 300px;" src="{{STATIC_URL}}img/Phillip_Phung.jpg" %}">
+
+                <div>
+                    <h3 style="color:black">Phillip Phung</h3>
+                    <h5 style="color:black">Google Country Consultant</h5>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
