@@ -1,0 +1,3 @@
+* Install Mezzanine (http://mezzanine.jupo.org/)
+* Install Mezzanine Events
+  pip install -e path_to_mezzanine 
