@@ -16,3 +16,8 @@ Clone source code
     git clone -b develop https://github.com/gdgvietnam/gdgvietnam.git
     /home/username/.virtualenvs/gdgvietnam/bin/python /home/Workspace/gdgvietnam/gdgvietnam/manage.py runserver 8000
 ```
+
+Account demo
+
+- Username: nampnq
+- Pass: 1
