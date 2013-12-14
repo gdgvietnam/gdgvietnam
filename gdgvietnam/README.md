@@ -7,8 +7,8 @@ Install pip, virtualenv, virtualenvwrapper
 In virtualenv run
 
 ```sh
-pip install -r /home/Workspace/gdgvietnam/gdgvietnam/requirements.txt
-pip install -e pip install -e /home/Workspace/gdgvietnam/mezzanine-events/
+    pip install -r /home/Workspace/gdgvietnam/gdgvietnam/requirements.txt
+    pip install -e pip install -e /home/Workspace/gdgvietnam/mezzanine-events/
 ```
 
 Clone source code
