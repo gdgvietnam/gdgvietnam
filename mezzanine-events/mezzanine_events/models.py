@@ -9,7 +9,7 @@ from datetime import timedelta, datetime as dt
 from mezzanine.utils.sites import current_site_id
 from mezzanine.conf import settings
 import os
-from datetime import date
+from datetime import datetime
 def _get_current_domain():
 	return Site.objects.get(id=current_site_id()).domain
 def get_image_path(instance, filename):
@@ -81,17 +81,17 @@ class Event(Page, RichText):
 		super(Event, self).save(*args, **kwargs)
 	@property
 	def is_past_due(self):
-		if date.today() > self.date:
+		if datetime.now() > self.end_datetime():
 			return True
 		return False	
 	@property
 	def is_future_due(self):
-		if date.today() < self.date:
+		if datetime.now() < self.start_datetime():
 			return True
 		return False	
 	@property
 	def is_ongoing(self):
-		if date.today() == self.date:
+		if self.start_datetime() <= datetime.today() <= self.end_datetime():
 			return True
 		return False	
 	class Meta:
