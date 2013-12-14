@@ -7,3 +7,4 @@ local_settings.py
 *.py~
 settings.py
 .idea/
+static/media/
