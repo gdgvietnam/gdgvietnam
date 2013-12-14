@@ -1,5 +1,5 @@
 {% extends "pages/page.html" %}
-{% load i18n %}
+{% load i18n staticfiles %}
 {% load mezzanine_tags event %}
 
 {% block main %}{{ block.super }}
@@ -39,17 +39,21 @@
             {% for event in page.eventcontainer.events %}
             {% if event.event.is_past_due %}
             <div class="col-md-4">
+            <a href="{{event.event.get_absolute_url}}">
                 <div class="thumbnail">
-                    <div class="caption animated flipOutX">
-                        <h4>{{ event.event.title }}</h4>
 
-                        <p>{{ event.event.description|truncatechars:100 }}</p>
+                        <div class="caption animated flipOutX">
+                            <h4>{{ event.event.title }}</h4>
 
-                        <p><a href="{{event.event.get_absolute_url}}" class="label label-default" rel="tooltip" title="">Details</a></p>
-                    </div>
-                    <legend>{{ event.event.title }}</legend>
-                    <img src="{{ MEDIA_URL }}{{ event.event.small_banner_photo }}" alt="..." style="max-height: 231px;max-width: 346px;">
+                            <p>{{ event.event.description|truncatechars:100 }}</p>
+
+    {#                        <p><a href="{{event.event.get_absolute_url}}" class="label label-default" rel="tooltip" title="">Details</a></p>#}
+                        </div>
+                        <legend>{{ event.event.title }}</legend>
+                        <img src="{% if event.event.small_banner_photo %}{{ MEDIA_URL }}{{ event.event.small_banner_photo }}{% else %}{% static "img/logo.png" %}{% endif %}" alt="..." style="height: 231px;width: 346px;">
+
                 </div>
+            </a>
             </div>
             {% endif %}
             {% endfor %}
