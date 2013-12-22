@@ -107,19 +107,19 @@ class Event(Page, RichText):
 
     @property
     def is_past_due(self):
-        if datetime.now() > self.end_datetime():
+        if datetime.today().date() > self.date:
             return True
         return False
 
     @property
     def is_future_due(self):
-        if datetime.now() < self.start_datetime():
+        if datetime.today().date() < self.date:
             return True
         return False
 
     @property
     def is_ongoing(self):
-        if self.start_datetime() <= datetime.today() <= self.end_datetime():
+        if self.date == datetime.today().date():
             return True
         return False
 
