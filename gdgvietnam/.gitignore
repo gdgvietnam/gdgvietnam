@@ -8,3 +8,4 @@ local_settings.py
 settings.py
 .idea/
 static/media/
+wsgi.py
