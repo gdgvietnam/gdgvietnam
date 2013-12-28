@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 {% load pages_tags mezzanine_tags i18n future staticfiles %}
 <head>
@@ -97,11 +97,17 @@
 <div class="container">
 {% page_menu "pages/menus/footer.html" %}
     <br/>
-    <div class="row"> <div class="col-lg-12 text-center visit">Visit us at:
-        <a href="https://www.facebook.com/gdgviet"><img src="{% static "img/facebook.png" %}" width="50px"></a>
-        <a href="https://plus.google.com/u/1/106004400398954649440"><img src="{% static "img/googleplus.png" %}" width="50px"/></a>
+    <div class="row"> 
+	<div class="col-md-6 text-right visit">Visit us at
+        	<a href="https://www.facebook.com/gdgviet"><img src="{% static "img/facebook.png" %}" width="50px"></a>
+        	<a href="https://plus.google.com/u/1/106004400398954649440"><img src="{% static "img/googleplus.png" %}" width="50px"/></a>
+	</div>
+	<div class="col-md-6 text-left visit">Do you
+        	<a href="https://www.facebook.com/gdgviet"><img src="http://thumbs.gograph.com/gg61082551.jpg" width="50px"></a>
+	        <a href="https://plus.google.com/u/1/106004400398954649440"><img src="http://www.ecreativeim.com/blog/wp-content/uploads/2011/05/facebook-like-icon.png" width="50px"/></a>
 
-    </div></div>
+	</div>
+    </div>
 </div>
 </footer>
 
