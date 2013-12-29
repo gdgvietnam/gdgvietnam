@@ -14,9 +14,12 @@
             })
         });
     </script>
+
+
 {% endblock %}
 
 {% block main %}
+
     <div class="container">
         <div class="row">
             {% if events.ongoing_events %}
@@ -33,10 +36,10 @@
                                             frameborder="0"
                                             allowfullscreen></iframe>
                                 </div>
-                                <div class="col-md-12" style="text-align: center"><a
+                                <div name="test" class="col-md-12" style="text-align: center"><a
                                         href="{{ event.event.get_absolute_url }}"
                                         style="font-style: italic;color: #E7A344">More
-                                    infomation from event >> </a></div>
+                                    infomation from event >> </a></div> 
                             </div>
                         {% endfor %}
 
@@ -69,6 +72,7 @@
                                         <b>{{ event.event.date|date:"d/m/y" }}</b><br><span class="countdown"
                                                                                             style="float: none;margin: 0 auto">{{ event.event.start_datetime|date:"c" }}+07:00</span>
                                     </h1></div>
+				
                                     <div class="col-md-12" style="text-align: center"><a
                                             href="{{ event.event.get_absolute_url }}"
                                             style="font-style: italic;color: #E7A344">More
@@ -146,7 +150,9 @@
     {#            </a>#}
     {#        </div>#}
 
-
+	<div id="testarea" class="container">
+1231312321
+</div>
     <div class="container">
         <div class="row">
             <hr>

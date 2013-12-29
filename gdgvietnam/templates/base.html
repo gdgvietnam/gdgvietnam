@@ -50,24 +50,22 @@
 
 {% block extra_head %}{% endblock %}
 
+
 <script> $( document ).ready(function() {
 
-//alert($("iframe").attr("src"));
-temp = $("iframe").attr("src");
-//delete http://
-temp= temp.replace("http://","");
-
-//replace watch with embed
-temp= temp.replace("watch","embed");
-
-//replace ?v=
-temp=temp.replace("?v=","");
-
-//alert(temp);
-$("iframe").prop("src",temp);
 
 
-});</script>
+$("iframe").each(function() { 
+        var src= $(this).attr('src');
+	src = src.replace("http://","");
+	src = src.replace("watch","embed");
+	src = src.replace("?v=","");
+        $(this).attr('src',src);  
+});
+
+
+
+});</script> 
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
