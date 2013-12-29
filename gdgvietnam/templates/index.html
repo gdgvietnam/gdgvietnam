@@ -1,71 +1,205 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n staticfiles mezzanine_tags %}
 
 {% block meta_title %}{% trans "GDGVietnam" %}{% endblock %}
-
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/jquery.countdown.css" %}">
+{% endblock %}
+{% block extra_js %}
+    <script src="{% static "js/jquery.countdown.js" %}"></script>
+    <script>
+        $(function () {
+            $('.countdown').each(function () {
+                $(this).countdown({until: new Date($(this).html())});
+            })
+        });
+    </script>
+{% endblock %}
 
 {% block main %}
-    <div class="container"><div class="row"><div><h2 class="OrangeHeader">Our latest events</h2></div></div></div>
-        <div id="myCarousel" class="carousel slide homeslide">
-            <!-- Indicators -->
+    <div class="container">
+        <div class="row">
+            {% if events.ongoing_events %}
+                <div><h2 class="OrangeHeader">Ongoing Events</h2></div>
+                <div id="ongoingEvent" class="carousel slide homeslide">
+                    <div class="carousel-inner">
+                        {% for event in events.ongoing_events %}
+                            <div class="item {% if forloop.first %}active{% endif %}">
+                                <h2 style="color: #9F9F9F">Watch Youtube Live! for {{ event.title|truncatechars:30 }}
+                                    event</h2>
 
+                                <div>
+                                    <iframe width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
+                                            frameborder="0"
+                                            allowfullscreen></iframe>
+                                </div>
+                                <div class="col-md-12" style="text-align: center"><a
+                                        href="{{ event.event.get_absolute_url }}"
+                                        style="font-style: italic;color: #E7A344">More
+                                    infomation from event >> </a></div>
+                            </div>
+                        {% endfor %}
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner">
-                {% for event in events %}
-                    <div class="item {% if forloop.first %}active{% endif %}">
-                        <a href="{{ event.event.get_absolute_url }}">
-                        {% if event.event.is_ongoing %}
-                            <iframe class="fill" width="560" height="315" src="//{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>
-                        {% else %}
-                            <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ event.event.banner_photo }}");'></div>
-                        {% endif %}
-                        </a>
                     </div>
-                {% endfor %}
-            </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#ongoingEvent" data-slide="prev">
+                        <img src="/static/img/left.png" class="icon-prev"/>
+                    </a>
+                    <a class="right carousel-control" href="#ongoingEvent" data-slide="next">
+                        <img src="/static/img/right.png" class="icon-next"/>
+                    </a>
+                </div>
+            {% endif %}
+            {% if events.future_events and not events.ongoing_events %}
+                <div><h2 class="OrangeHeader">Upcomming Events</h2></div>
+                <div id="upcomingEvent" class="carousel slide homeslide">
+                    <div class="carousel-inner">
+                        {% for event in events.future_events %}
+                            <div class="item {% if forloop.first %}active{% endif %}">
+                                <h2 style="color: #9F9F9F">Watch Youtube Live! for {{ event.title|truncatechars:30 }}
+                                    event</h2>
 
-            <!-- Controls -->
-            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                <img src="/static/img/left.png" class="icon-prev"/>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                <img src="/static/img/right.png"  class="icon-next"/>
-            </a>
+                                <div style="background-color:#D65F57;width: 100%; height: 670px ">
+                                    <iframe width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
+                                            frameborder="0"
+                                            allowfullscreen></iframe>
+                                    <div class="col-md-6" style="text-align: center"><h1>
+                                        <b>OFFICAL<br>COUNTDOWN</b></h1></div>
+                                    <div class="col-md-6" style="text-align: center"><h1>
+                                        <b>{{ event.event.date|date:"d/m/y" }}</b><br><span class="countdown"
+                                                                                            style="float: none;margin: 0 auto">{{ event.event.start_datetime|date:"c" }}+07:00</span>
+                                    </h1></div>
+                                    <div class="col-md-12" style="text-align: center"><a
+                                            href="{{ event.event.get_absolute_url }}"
+                                            style="font-style: italic;color: #E7A344">More
+                                        infomation from event >> </a></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#upcomingEvent" data-slide="prev">
+                        <img src="/static/img/left.png" class="icon-prev"/>
+                    </a>
+                    <a class="right carousel-control" href="#upcomingEvent" data-slide="next">
+                        <img src="/static/img/right.png" class="icon-next"/>
+                    </a>
+                </div>
+            {% endif %}
+            {% if events.lastest_events and not events.ongoing_events %}
+                <div><h2 class="OrangeHeader">Lastest Events</h2></div>
+                <div id="lastestEvent" class="carousel slide homeslide">
+                    <div class="carousel-inner">
+                        {% for event in events.lastest_events %}
+                            <div class="item {% if forloop.first %}active{% endif %}">
+                                <div class="col-md-12">
+                                    <h2 style="color: #9F9F9F">{{ event.title|truncatechars:100 }}</h2>
+
+                                    <img src="{{ MEDIA_URL }}{{ event.event.banner_photo }}" style="width: 100%"/>
+
+                                    <p>{{ event.event.content|richtext_filter|safe|truncatechars:500 }}</p>
+                                    <a class="readmore pull-right" href="{{ event.event.get_absolute_url }}">Read
+                                        more</a>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#lastestEvent" data-slide="prev">
+                        <img src="/static/img/left.png" class="icon-prev"/>
+                    </a>
+                    <a class="right carousel-control" href="#lastestEvent" data-slide="next">
+                        <img src="/static/img/right.png" class="icon-next"/>
+                    </a>
+                </div>
+            {% endif %}
         </div>
+    </div>
+    {#        <div id="myCarousel" class="carousel slide homeslide">#}
+    {#            <!-- Indicators -->#}
+    {##}
+    {##}
+    {#            <!-- Wrapper for slides -->#}
+    {#            <div class="carousel-inner">#}
+    {#                {% for event in events %}#}
+    {#                    {{ event }}#}
+    {#                    <div class="item {% if forloop.first %}active{% endif %}">#}
+    {#                        <a href="{{ event.event.get_absolute_url }}">#}
+    {#                        {% if event.event.is_ongoing %}#}
+    {#                            <iframe class="fill" width="560" height="315" src="//{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>#}
+    {#                        {% else %}#}
+    {#                            <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ event.event.banner_photo }}");'></div>#}
+    {#                        {% endif %}#}
+    {#                        </a>#}
+    {#                    </div>#}
+    {#                {% endfor %}#}
+    {#            </div>#}
+    {##}
+    {#            <!-- Controls -->#}
+    {#            <a class="left carousel-control" href="#myCarousel" data-slide="prev">#}
+    {#                <img src="/static/img/left.png" class="icon-prev"/>#}
+    {#            </a>#}
+    {#            <a class="right carousel-control" href="#myCarousel" data-slide="next">#}
+    {#                <img src="/static/img/right.png"  class="icon-next"/>#}
+    {#            </a>#}
+    {#        </div>#}
 
 
     <div class="container">
         <div class="row">
             <hr>
             <div class="col-md-4"><h2 class="OrangeHeader">Who are we</h2>
-            <div class="custom-title-font quote">
-                "...an independent group based on our interests of Google Technology"
-            </div>
+
+                <div class="custom-title-font quote">
+                    "...an independent group based on our interests of Google Technology"
+                </div>
             </div>
             <div class="col-md-8">
 
-                    We have frequent meetings for different topics and the format of the meetings varying from presenters to individual interactive groups that focus on one technology in detail.  We welcome people from all kind of ages and industries who are interested in, want to share and learn more about technology
+                We have frequent meetings for different topics and the format of the meetings varying from presenters to
+                individual interactive groups that focus on one technology in detail. We welcome people from all kind of
+                ages and industries who are interested in, want to share and learn more about technology
                 <br/>
                 <br/>
+
                 <div class="col-md-12 readmore">
                     <a class="readmore" href="/about">Read more</a>
                 </div>
             </div>
         </div>
-        <hr>
 
     </div>
 
+    <div class="container">
+        <div class="row">
+            <hr>
+            <div class="col-md-12"><h2 class="OrangeHeader">Our blog</h2></div>
+            <div class="col-md-12"><h3>What is new about Google Engine</h3></div>
+            <div class="col-md-3 pull-right">post on 1 Oct 2013</div>
+            <br>
 
-{#    <div class="row"><hr>#}
-{#        <div class="col-md-12"><h2 class="OrangeHeader">Our blog</h2></div>#}
-{#        <div class="col-md-12"><h3>What is new about Google Engine</h3></div>#}
-{#        <div class="col-md-3 pull-right">post on 1 Oct 2013</div><br>#}
-{#        <div class="col-md-3 pull-right">by Admin</div><br><br>#}
-{#        <div class="col-md-12">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes in futurum</div>#}
-{#        <div class="col-md-12 readmore"><a class="readmore" href="/blogs">Read more</a></div>#}
-{#    </div>#}
+            <div class="col-md-3 pull-right">by Admin</div>
+            <br><br>
+
+            <div class="col-md-12">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
+                euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
+                nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
+                vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+                feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum
+                zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend
+                option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent
+                claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt
+                lectores legere me lius quod ii legunt saepius. Claritas est etiam processus dynamicus, qui sequitur
+                mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram,
+                anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi,
+                qui nunc nobis videntur parum clari, fiant sollemnes in futurum
+            </div>
+            <div class="col-md-12 readmore"><a class="readmore" href="/blogs">Read more</a></div>
+            <br>
+        </div>
+    </div>
 
 {% endblock %}
 
