@@ -77,6 +77,7 @@
 # If True, the south application will be automatically added to the
 # INSTALLED_APPS setting.
 USE_SOUTH = True
+#X_FRAME_OPTIONS = 'ALLOWALL'
 
 
 ########################
@@ -241,6 +242,7 @@ INSTALLED_APPS = (
     "mezzanine.pages",
     "mezzanine.galleries",
     "mezzanine.twitter",
+    "mezzanine_events",
     #"mezzanine.accounts",
     #"mezzanine.mobile",
 )
@@ -258,6 +260,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.core.context_processors.tz",
     "mezzanine.conf.context_processors.settings",
+    "context_processors.all_events",
 )
 
 # List of middleware classes to use. Order is important; in the request phase,
@@ -269,6 +272,8 @@ MIDDLEWARE_CLASSES = (
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+        #"django.middleware.clickjacking.XFrameOptionsMiddleware",
+
     "django.contrib.messages.middleware.MessageMiddleware",
     "mezzanine.core.request.CurrentRequestMiddleware",
     "mezzanine.core.middleware.RedirectFallbackMiddleware",

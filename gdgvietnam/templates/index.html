@@ -16,7 +16,7 @@
                     <div class="item {% if forloop.first %}active{% endif %}">
                         <a href="{{ event.event.get_absolute_url }}">
                         {% if event.event.is_ongoing %}
-                            <iframe class="fill" width="560" height="315" src="/{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="fill" width="560" height="315" src="//{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>
                         {% else %}
                             <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ event.event.banner_photo }}");'></div>
                         {% endif %}
