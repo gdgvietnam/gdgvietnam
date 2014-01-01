@@ -69,6 +69,17 @@ $("iframe").each(function() {
 </head>
 <body id="{% block body_id %}body{% endblock %}">
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=466295180157903";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
 <div class="navbar navbar-inverse  mynav" role="navigation">
 
 <div class="container">
@@ -119,9 +130,19 @@ $("iframe").each(function() {
         	<a href="https://plus.google.com/u/1/106004400398954649440"><img src="{% static "img/googleplus.png" %}" width="50px"/></a>
 	</div>
 	<div class="col-md-6 text-left visit">Do you
-        	<a href="https://www.facebook.com/gdgviet"><img src="http://thumbs.gograph.com/gg61082551.jpg" width="50px"></a>
-	        <a href="https://plus.google.com/u/1/106004400398954649440"><img src="http://www.ecreativeim.com/blog/wp-content/uploads/2011/05/facebook-like-icon.png" width="50px"/></a>
+<div class="fb-follow" data-href="https://www.facebook.com/gdgviet" data-width="50" data-height="50" data-colorscheme="light" data-layout="box_count" data-show-faces="false"></div>
 
+		<!-- Place this tag where you want the widget to render. -->
+<div class="g-follow" data-annotation="vertical-bubble" data-height="20" data-href="https://plus.google.com/106004400398954649440" data-rel="publisher"></div>
+
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 	</div>
     </div>
 </div>

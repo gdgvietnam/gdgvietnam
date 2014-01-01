@@ -32,7 +32,7 @@
                                     event</h2>
 
                                 <div>
-                                    <iframe width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
+                                    <iframe name="myframe"  width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
                                             frameborder="0"
                                             allowfullscreen></iframe>
                                 </div>
@@ -63,7 +63,7 @@
                                     event</h2>
 
                                 <div style="background-color:#D65F57;width: 100%; height: 670px ">
-                                    <iframe width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
+                                    <iframe name="myframe"  width="100%" height="500" src="//{{ event.event.live_youtube_link }}"
                                             frameborder="0"
                                             allowfullscreen></iframe>
                                     <div class="col-md-6" style="text-align: center"><h1>
@@ -132,7 +132,7 @@
     {#                    <div class="item {% if forloop.first %}active{% endif %}">#}
     {#                        <a href="{{ event.event.get_absolute_url }}">#}
     {#                        {% if event.event.is_ongoing %}#}
-    {#                            <iframe class="fill" width="560" height="315" src="//{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>#}
+    {#                            <iframe name="myframe" class="fill" width="560" height="315" src="//{{event.event.live_youtube_link}}" frameborder="0" allowfullscreen></iframe>#}
     {#                        {% else %}#}
     {#                            <div class="fill" style='background-image:url("{{ MEDIA_URL }}{{ event.event.banner_photo }}");'></div>#}
     {#                        {% endif %}#}
